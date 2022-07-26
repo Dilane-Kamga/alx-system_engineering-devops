@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-# this script displays only the following fields from /etc/passwd
-# username, groupid, shell full path
+# Displays the content of the file /etc/passwd.
 
-while read line; do
-    echo "$line" | cut -d':' -f 1,3,6
-done < /etc/passwd
+while read -r line; do echo "$line" | cut -d ":" -f 1,3,6; done < "/etc/passwd"

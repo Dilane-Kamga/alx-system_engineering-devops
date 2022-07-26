@@ -1,4 +1,3 @@
 #!/usr/bin/env bash
-# This script  displays its PID.
-
-echo $$
+# Find and display of it's pid
+echo "$$"
