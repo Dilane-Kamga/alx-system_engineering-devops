@@ -1,12 +1,10 @@
-# Fix problem of high amount files opened
-
-exec {'replace-1':
-  provider => shell,
-  command  => 'sudo sed -i "s/nofile 5/nofile 50000/" /etc/security/limits.conf',
-  before   => Exec['replace-2'],
+# changes the OS configuration so that it is posible to login with the holberton user and open a file without any error message
+exec { 'change soft limit':
+    command  => 'sudo sed -i "s/holberton\ssoft.*/holberton\tsoft\tnofile\t10000/" /etc/security/limits.conf',
+    provider => shell,
 }
 
-exec {'replace-2':
-  provider => shell,
-  command  => 'sudo sed -i "s/nofile 4/nofile 40000/" /etc/security/limits.conf',
+exec { 'change hard limit':
+    command  => 'sudo sed -i "s/holberton\shard.*/holberton\thard\tnofile\t100000/" /etc/security/limits.conf',
+    provider => shell,
 }
